@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Emberfall Duel</title>
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+  <div id="app">
+    <section id="screen-title" class="screen active" aria-label="Title screen">
+      <div class="title-ember" aria-hidden="true"></div>
+      <p class="eyebrow">A duel on a dying ember-world</p>
+      <h1 class="game-title">Emberfall <span>Duel</span></h1>
+      <p class="tagline">Stoke your flame. Break theirs. Only one ember survives the ash.</p>
+      <button id="btn-start" class="btn-primary">Start Duel</button>
+      <p class="hint">Click cards to play them. End Turn unleashes your creatures.</p>
+    </section>
+
+    <section id="screen-table" class="screen" aria-label="Duel table">
+      <header class="topbar">
+        <div class="brand">Emberfall Duel</div>
+        <div id="turn-banner" class="turn-banner">Your Ember Rises</div>
+        <button id="btn-sound" class="btn-ghost" aria-label="Toggle sound">Sound: On</button>
+      </header>
+
+      <main class="table">
+        <div class="side rival-side">
+          <div class="hero-panel rival-panel">
+            <div class="portrait rival-portrait" aria-hidden="true">
+              <svg viewBox="0 0 64 64"><path d="M32 8 L42 24 L58 28 L46 40 L49 56 L32 48 L15 56 L18 40 L6 28 L22 24 Z" fill="#3a1212" stroke="#ff7040" stroke-width="2"/><circle cx="24" cy="30" r="3" fill="#ff9a5a"/><circle cx="40" cy="30" r="3" fill="#ff9a5a"/><path d="M22 42 Q32 36 42 42" fill="none" stroke="#ff7040" stroke-width="2"/></svg>
+            </div>
+            <div class="hero-stats">
+              <div class="hero-name">Ashen Rival</div>
+              <div class="stat-row">
+                <div class="life-orb rival-life"><span class="stat-label">Life</span><span id="rival-life" class="stat-value">20</span></div>
+                <div class="armor-chip"><span class="stat-label">Armor</span><span id="rival-armor" class="stat-value">0</span></div>
+                <div class="ember-chip"><span class="stat-label">Ember</span><span id="rival-ember" class="stat-value">0/0</span></div>
+              </div>
+            </div>
+            <div class="hand-count" title="Rival hand">
+              <span class="hand-icon" aria-hidden="true">&#x1f0a0;</span>
+              <span>Hand: <strong id="rival-hand-count">5</strong></span>
+              <span class="deck-count">Deck: <strong id="rival-deck-count">15</strong></span>
+            </div>
+          </div>
+          <div id="rival-field" class="field-row" aria-label="Rival creatures"></div>
+        </div>
+
+        <div class="center-line">
+          <div class="log-wrap">
+            <div class="log-title">Turn Log</div>
+            <ul id="turn-log" class="turn-log" aria-live="polite"></ul>
+          </div>
+          <div class="center-flame" aria-hidden="true"></div>
+        </div>
+
+        <div class="side player-side">
+          <div id="player-field" class="field-row" aria-label="Your creatures"></div>
+          <div class="hero-panel player-panel">
+            <div class="portrait player-portrait" aria-hidden="true">
+              <svg viewBox="0 0 64 64"><path d="M32 6 L44 22 L58 26 L46 38 L50 56 L32 47 L14 56 L18 38 L6 26 L20 22 Z" fill="#4a1a08" stroke="#ffb347" stroke-width="2"/><circle cx="24" cy="30" r="3" fill="#ffd27a"/><circle cx="40" cy="30" r="3" fill="#ffd27a"/><path d="M22 40 Q32 46 42 40" fill="none" stroke="#ffcc66" stroke-width="2"/></svg>
+            </div>
+            <div class="hero-stats">
+              <div class="hero-name">You, Emberkeeper</div>
+              <div class="stat-row">
+                <div class="life-orb player-life"><span class="stat-label">Life</span><span id="player-life" class="stat-value">20</span></div>
+                <div class="armor-chip"><span class="stat-label">Armor</span><span id="player-armor" class="stat-value">0</span></div>
+                <div class="ember-chip"><span class="stat-label">Ember</span><span id="player-ember" class="stat-value">1/1</span></div>
+              </div>
+            </div>
+            <div class="action-area">
+              <button id="btn-end-turn" class="btn-primary">End Turn</button>
+            </div>
+          </div>
+          <div id="player-hand" class="hand-row" aria-label="Your hand"></div>
+        </div>
+      </main>
+      <div id="tooltip" class="tooltip hidden" role="status"></div>
+    </section>
+
+    <section id="screen-win" class="screen end-screen" aria-label="Victory screen">
+      <div class="end-glow win-glow" aria-hidden="true"></div>
+      <p class="eyebrow">Victory</p>
+      <h2>The ember bows to you</h2>
+      <p class="end-sub">The dying world remembers your flame.</p>
+      <button id="btn-win-again" class="btn-primary">Play Again</button>
+    </section>
+
+    <section id="screen-loss" class="screen end-screen" aria-label="Defeat screen">
+      <div class="end-glow loss-glow" aria-hidden="true"></div>
+      <p class="eyebrow">Defeat</p>
+      <h2>Your flame gutters out</h2>
+      <p class="end-sub">Ash takes what ember could not hold.</p>
+      <button id="btn-loss-again" class="btn-primary">Play Again</button>
+    </section>
+  </div>
+  <script type="module" src="./src/main.js"></script>
+</body>
+</html>
