@@ -3,6 +3,7 @@ import { render } from './render.js';
 import { showScreen } from './screens.js';
 import { sfx, setSoundEnabled, soundEnabled, unlockAudio } from './audio.js';
 import { runRivalTurn } from './ai.js';
+import { startFx } from './fx.js';
 
 const duel = createDuel((event) => {
   if (event === 'play') sfx.play();
@@ -128,5 +129,7 @@ function exposeDebug() {
 
 wire();
 exposeDebug();
+const fxCanvas = document.getElementById('fx');
+if (fxCanvas) startFx(fxCanvas);
 showScreen('title');
 setupAutoplay();
